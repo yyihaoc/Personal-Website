@@ -13,6 +13,7 @@ body {
     font-size: 16px;
     line-height: 1.5;
     background: #fff;
+    overflow: hidden;
 }
 
 a {
@@ -36,13 +37,16 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    top: 100px;
+    transition: transform 0.5s ease;
 }
 
 /* Navbar */
 .navbar {
     position: fixed;
     background-color: #000;
-    width: 100%
+    width: 100%;
+    z-index: 1000;
 }
 
 .navbar .container {
@@ -71,7 +75,9 @@ section {
     color: #fff;
     padding: 0 8px;
     margin: 0 7px;
-    transition: 0.3s
+    transition: 0.3s;
+    cursor: pointer;
+    
 }
 
 .navbar ul li a:hover {
@@ -88,7 +94,6 @@ section {
     justify-content: center;
     align-items: center;
 }
-
 
 .hero-content {
     display: flex;
@@ -146,7 +151,7 @@ section {
 
 section.contact {
     position: relative;
-    height: auto;
+    height: 284px;
     padding: 50px 0;
     background-color: #000;
 }
@@ -179,7 +184,6 @@ section.contact {
 
 
 /* Utility Classes */
-
 
 .container {
     margin: 0px auto;
