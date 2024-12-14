@@ -28,14 +28,11 @@ img {
     max-width: 100%;
 }
 
-section {
-    height: calc(100vh - 100px);
-}
+
 
 .fullpage {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
 }
 
 /* Navbar */
@@ -83,7 +80,7 @@ section {
 /* Software Projects */
 
 .sw-proj-page {
-    padding: 180px 0;
+    padding: 170px 0;
 }
 
 .sw-proj-page .container {
@@ -105,6 +102,7 @@ section {
     justify-content: space-between;
     gap: 10%;
     width: 90%;
+    margin-bottom: 0;
 }
 
 .project-card {
@@ -144,7 +142,7 @@ section {
 /* Contact */
 
 section.contact {
-    position: relative;
+
     height: 284px;
     padding: 50px 0;
     background-color: #000;
@@ -176,6 +174,9 @@ section.contact {
     margin: 30px 0 20px;
 }
 
+i {
+    font-size: 30px;
+}
 
 
 /* Utility Classes */

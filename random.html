@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edge Smooth Scrolling</title>
+    <style>
+        /* Reset Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Outer Container */
+        .outer-container {
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Inner Wrapper */
+        .inner-wrapper {
+            height: 100%;
+            transition: transform 0.8s ease; /* Smooth transition */
+        }
+
+        /* Individual Sections */
+        .section {
+            height: 100vh; /* Full viewport height */
+            overflow-y: auto; /* Allow normal scrolling within sections */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .section:nth-child(odd) {
+            background-color: #6a5acd;
+            color: white;
+        }
+
+        .section:nth-child(even) {
+            background-color: #ff6347;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-container">
+        <div class="inner-wrapper" id="innerWrapper">
+            <div class="section">
+                <h1>Section 1</h1>
+                <p>Scroll down to transition to the next section.</p>
+                <p style="margin-top: 1200px;">End of Section 1</p>
+            </div>
+            <div class="section">
+                <h1>Section 2</h1>
+                <p>Scroll freely in this section.</p>
+                <p style="margin-top: 1200px;">End of Section 2</p>
+            </div>
+            <div class="section">
+                <h1>Section 3</h1>
+                <p>Scroll down to transition to the next section.</p>
+                <p style="margin-top: 1200px;">End of Section 3</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const innerWrapper = document.getElementById('innerWrapper');
+        const sections = document.querySelectorAll('.section');
+        const threshold = 50; // Adjust this for edge detection
+        let currentSection = 0;
+        let isTransitioning = false;
+
+        // Scroll event listener for each section
+        sections.forEach((section, index) => {
+            section.addEventListener('scroll', () => {
+                if (isTransitioning) return;
+
+                const scrollTop = section.scrollTop;
+                const scrollHeight = section.scrollHeight;
+                const clientHeight = section.clientHeight;
+
+                if (scrollTop + clientHeight >= scrollHeight - threshold && index < sections.length - 1) {
+                    // Near the bottom edge -> Transition to the next section
+                    isTransitioning = true;
+                    currentSection++;
+                    smoothTransition();
+                } else if (scrollTop <= threshold && index > 0) {
+                    // Near the top edge -> Transition to the previous section
+                    isTransitioning = true;
+                    currentSection--;
+                    smoothTransition();
+                }
+            });
+        });
+
+        // Smoothly transition between sections
+        function smoothTransition() {
+            const translateY = -currentSection * 100;
+            innerWrapper.style.transform = `translateY(${translateY}vh)`;
+
+            // Allow a delay for the transition to complete before enabling further transitions
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 800); // Match the transition duration
+        }
+    </script>
+</body>
+</html>

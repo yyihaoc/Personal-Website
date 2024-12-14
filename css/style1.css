@@ -28,10 +28,6 @@ img {
     max-width: 100%;
 }
 
-section {
-    height: calc(100vh - 100px);
-}
-
 .fullpage {
     display: flex;
     flex-direction: column;
@@ -173,11 +169,12 @@ section.contact {
     margin: 30px 0 20px;
 }
 
-
+i {
+    font-size: 30px;
+}
 
 
 /* Utility Classes */
-
 
 .container {
     margin: 0px auto;
