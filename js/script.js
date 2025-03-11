@@ -23,6 +23,7 @@ let timeThreshold = 300;   // Maximum time (in ms) to consider the scroll a swip
 let isSwiping = false;  // Flag to indicate a swipe is in progress
 
 
+/*
 // Event listener for wheel event
 document.addEventListener('wheel', (event) => {
     if (startTime === 0) {
@@ -105,6 +106,7 @@ document.querySelector('.scroll').addEventListener('click', () => {
     startTime = 0;
     isSwiping = false;
 });
+*/
 
 
 
@@ -143,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log(typingElements[0].classList.contains('hero-heading'));
 
 });
+
 
 
 // ------------------------------------------------------------------------------------
@@ -218,3 +221,53 @@ window.addEventListener('load', function () {
     const pages = document.querySelector('.hero');
     pages.scrollIntoView({ behavior: "smooth" });
 });
+
+
+function toggleMenu() {
+    console.log("Menu toggled!");
+    document.querySelector(".menu-btn").classList.toggle("active");
+    document.getElementById("Sidenav").classList.toggle("active");
+    
+    const subnavbars = ['subnavbar-first', 'subnavbar-second', 'subnavbar-third'];
+    subnavbars.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            if (element.classList.contains("show")) {
+                element.style.maxHeight = "0px";
+                setTimeout(() => element.classList.remove("show"), 0); // Remove class after transition
+            } 
+        }
+    });
+
+    document.body.classList.toggle("no-scroll");
+}
+
+
+function openSubNavBarContents(button) {
+    const targetId = button.getAttribute("data-target");
+    const targetElement = document.getElementById(targetId);
+    
+    const firstButton = document.getElementById(button.getAttribute("data-icon-1"));
+    const secondButton = document.getElementById(button.getAttribute("data-icon-2"));
+
+
+    /*
+    if (targetElement) {
+        targetElement.classList.toggle("show");
+    }
+    */
+    
+    if (targetElement.classList.contains("show")) {
+        targetElement.style.maxHeight = "0px";
+        setTimeout(() => targetElement.classList.remove("show"), 0); // Remove class after transition
+        firstButton.style.display = "none";
+        secondButton.style.display = "inline-block";
+    } else {
+        targetElement.classList.add("show");
+        targetElement.style.maxHeight = targetElement.scrollHeight + "px"; // Match content height
+        firstButton.style.display = "inline-block";
+        secondButton.style.display = "none";
+    }
+}
+
+
