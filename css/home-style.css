@@ -17,7 +17,10 @@ body {
     font-size: 16px;
     line-height: 1.5;
     overflow: auto; /* To disable scrolling, set as hidden*/
+    overflow-x: hidden;
 }
+
+
 
 .overall-background {
     position: fixed;
@@ -185,6 +188,12 @@ button.dropbtn {
     color: rgb(191, 191, 191);
 }
 
+@media (max-width: 550px) {
+    .button-holder i.fa-solid {
+        display: none;
+    }
+}
+
 
 
 /* Navbar */
@@ -296,17 +305,14 @@ button.dropbtn {
 }
 
 
-
-
-
 /* Hero */
 
 .hero { 
-    height: 100vh; /* Override default of 100vh - 80px */
+    height: 90vh; /* Override default of 100vh - 80px */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     /* .hero content is centered in the middle horizontally due to .container margin auto */
 }
 
@@ -317,14 +323,49 @@ button.dropbtn {
     align-items: center;
 }
 
+.hero-text {
+    text-align: center;
+}
+
 /* Greetings */
 
 .greetings {
     height: auto;
+    color: rgb(255, 255, 255);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+}
+
+.greetings .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.oval {
+    background-color: black;
+    width: 70vw;
+    height: 50vh;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 9000;
 }
 
 .greetings-content {
-    padding-top: 50px;
+    color: white;
+    position: absolute;
+    left: 5%;
+    z-index: 9001;
+    height: 50vh;
+    width: 90%;
+    margin-top: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
 }
 
 .greetings-intro {
@@ -335,9 +376,14 @@ button.dropbtn {
     font-size: 20px;
 }
 
+.greetings .hero-heading {
+    color: white;
+}
+
 /* About */
 
 .about {
+    margin-top: 15vh;
     height: auto;
 }
 
@@ -352,6 +398,7 @@ button.dropbtn {
 .about-text {
     text-align: center;
     margin: 30px 0;
+    font-weight: bold;
 }
 
 .languages {
@@ -369,6 +416,8 @@ button.dropbtn {
     grid-template-columns: repeat(2, 100px);
     gap: 70px;
 }
+
+
 
 /* Contact */
 
@@ -441,7 +490,7 @@ i {
 }
 
 @keyframes blink {
-    from { border-color: black }
+    from { border-color: white }
     to { border-color: transparent }
 }
 
@@ -455,7 +504,7 @@ i {
 .typed-out1 {
     border-right: 0.15em solid black;
     width: 0;
-    animation: typing1 1s steps(20, end) forwards, blink .8s 2 forwards;
+    animation: typing1 1s steps(20, end) forwards, blink .8s 4 forwards;
 }
 
 /* Typing Animation 2 */

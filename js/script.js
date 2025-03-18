@@ -111,7 +111,7 @@ document.querySelector('.scroll').addEventListener('click', () => {
 
 
 
-
+// "Hi there" typing effect ------------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -122,11 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const target = entry.target;
                 // When the element is in view, add the 'start-typing' class
                 entry.target.timer = setTimeout(() => {
-
                     if (target.classList.contains('hero-heading')) {
                         target.classList.add('typed-out1');
-                    } else if (target.classList.contains('first-greeting-content')) {
-                        target.classList.add('typed-out2');
                     }
 
                     // entry.target.classList.add('typed-out'); // Add typing animation
@@ -147,43 +144,45 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// The other greetings content typing effect ---------------------------------
 
-// ------------------------------------------------------------------------------------
-
-
-const target = document.querySelector('.second-greeting-content');
-const text = target.textContent;
+let target = document.querySelector('.first-greeting-content');
+const text1 = target.textContent;
 target.textContent = ''; // Clear the content initially
 
-let charIndex = 0;
+target = document.querySelector('.second-greeting-content');
+const text2 = target.textContent;
+target.textContent = ''; // Clear the content initially
 
-function typeNextCharacter() {
-  if (charIndex < text.length) {
-    target.textContent += text[charIndex]; // Add character to the paragraph
-    charIndex++;
-    setTimeout(typeNextCharacter, 30); // Adjust typing speed here
-  }
 
-}
+target = document.querySelector('.third-greeting-content');
+const text3 = target.textContent;
+target.textContent = ''; // Clear the content initially
 
-const next_target = document.querySelector('.third-greeting-content');
-const next_text = next_target.textContent;
-next_target.textContent = ''; // Clear the content initially
 
-let next_charIndex = 0;
+function typeNextCharacter(target, text) {
+    let charIndex = 0;
 
-function typeNextCharacter1() {
-  if (next_charIndex < next_text.length) {
-    next_target.textContent += next_text[next_charIndex]; // Add character to the paragraph
-    next_charIndex++;
-    setTimeout(typeNextCharacter1, 30); // Adjust typing speed here
-  }
+    function innerLoop() {
+        if (charIndex < text.length) {
+            target.textContent += text[charIndex];
+            charIndex++;
+            setTimeout(innerLoop, 30);
+        }
+    }
+
+    innerLoop();
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    const first = document.querySelector('.first-greeting-content');
+    const second = document.querySelector('.second-greeting-content');
+    const third = document.querySelector('.third-greeting-content');
+
     const observer = new IntersectionObserver((entries) => {
+        
         entries.forEach(entry => {
             
             if (entry.isIntersecting) {
@@ -191,10 +190,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 // When the element is in view, add the 'start-typing' class
                 entry.target.timer = setTimeout(() => {
 
-                    if (target.classList.contains('second-greeting-content')) {
-                        setTimeout(typeNextCharacter, 4000);
+                    if (target.classList.contains('first-greeting-content')) {
+                        setTimeout(() => typeNextCharacter(first, text1), 2000)
+                    } else if (target.classList.contains('second-greeting-content')) {
+                        setTimeout(() => typeNextCharacter(second, text2), 6000);
                     } else if (target.classList.contains('third-greeting-content')) {
-                        setTimeout(typeNextCharacter1, 11000);
+                        setTimeout(() => typeNextCharacter(third, text3), 14000);
                     }
                     
                     observer.unobserve(entry.target); // Stop observing once the animation starts
@@ -207,21 +208,48 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 1 // Adjust this to decide when the element should be considered "in view"
     });
 
-    const second = document.querySelector('.second-greeting-content');
-    const third = document.querySelector('.third-greeting-content');
+    
 
+    observer.observe(first);
     observer.observe(second); 
     observer.observe(third);
 
 });
 
 
+/*
 window.addEventListener('load', function () {
     history.replaceState({}, document.title, window.location.origin + window.location.pathname);
     const pages = document.querySelector('.hero');
     pages.scrollIntoView({ behavior: "smooth" });
 });
+*/
 
+
+// Expanding effect for greetings ------------------------------------
+
+const circle = document.querySelector('.oval');
+
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const expansionStartingHeight = 50;
+    const expansionEndingHeight = 450;
+
+    const contractionStartingHeight = 1300;
+    const contractionEndingHeight = 1700;
+    
+    if (scrollY > expansionStartingHeight && scrollY < expansionEndingHeight) {
+        const scaleValue = 1 + (scrollY - expansionStartingHeight) / 100; // Increase scale based on scroll
+        circle.style.transform = `scale(${scaleValue})`;
+    } else if (scrollY > contractionStartingHeight && scrollY < contractionEndingHeight) {
+        const scaleValue = 5 - (scrollY - contractionStartingHeight) / 100; // Increase scale based on scroll
+        circle.style.transform = `scale(${scaleValue})`;
+    }
+        
+});
+
+
+// Toggling the menu button --------------------------------
 
 function toggleMenu() {
     console.log("Menu toggled!");
@@ -242,6 +270,7 @@ function toggleMenu() {
     document.body.classList.toggle("no-scroll");
 }
 
+// Clicking the sub navigation headers in menu ----------------------
 
 function openSubNavBarContents(button) {
     const targetId = button.getAttribute("data-target");
@@ -249,13 +278,6 @@ function openSubNavBarContents(button) {
     
     const firstButton = document.getElementById(button.getAttribute("data-icon-1"));
     const secondButton = document.getElementById(button.getAttribute("data-icon-2"));
-
-
-    /*
-    if (targetElement) {
-        targetElement.classList.toggle("show");
-    }
-    */
     
     if (targetElement.classList.contains("show")) {
         targetElement.style.maxHeight = "0px";
@@ -271,3 +293,66 @@ function openSubNavBarContents(button) {
 }
 
 
+const body = document.body;
+const main = document.querySelector('main');
+
+let sy = 0;
+let dy = sy;
+
+body.style.height = main.clientHeight + 'px';
+main.style.position = 'fixed';
+main.style.top = 0;
+main.style.left = 0;
+main.style.width = '100%';  // Prevent unwanted shrinking
+
+window.addEventListener('scroll', () => {
+  sy = window.pageYOffset;
+});
+
+window.requestAnimationFrame(render);
+
+function render() {
+  dy = lerp(dy, sy, 0.05);
+  dy = Math.floor(dy * 100) / 100;
+
+  main.style.transform = `translateY(-${dy}px)`;
+
+  window.requestAnimationFrame(render);
+}
+
+function lerp(a, b, n) {
+  return (1 - n) * a + n * b;
+}
+
+
+
+
+const items = document.querySelectorAll('.item'); // All items
+const container = document.querySelector('.floating-container'); // Container
+
+// Function to randomly position an item within the container
+function randomPosition(item) {
+    const containerWidth = container.clientWidth;
+    const containerHeight = container.clientHeight;
+
+    // Random position (X and Y) within the container
+    const randomX = Math.random() * (containerWidth - item.offsetWidth);
+    const randomY = Math.random() * (containerHeight - item.offsetHeight);
+
+    // Apply the random position
+    item.style.left = randomX + 'px';
+    item.style.top = randomY + 'px';
+}
+
+// Function to animate items (move them around)
+function animateItems() {
+    items.forEach(item => {
+        randomPosition(item);
+    });
+
+    // Call animateItems every 2 seconds (you can adjust this interval)
+    setTimeout(animateItems, 2000);
+}
+
+// Initially position all items randomly
+animateItems();
