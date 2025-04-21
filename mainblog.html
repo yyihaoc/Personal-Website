@@ -11,37 +11,87 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- menu button -->
+    <div class="menu-btn" onClick="toggleMenu()">
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+    </div>
+    <!-- end menu button -->
+    
+    <!-- side nav -->
+    <nav class="sidenav" id="Sidenav">
+        <div class="sidenav-container">
+            <div class="dropdown">
+                <div class="button-holder">
+                    <button class="dropbtn" onclick="openSubNavBarContents(this)" data-target="subnavbar-first" data-icon-1="first-up" data-icon-2="first-down">Home</button>
+                    <i class="fa-solid fa-chevron-down" id="first-down" onclick="openSubNavBarContents(this)" data-target="subnavbar-first" data-icon-1="first-up" data-icon-2="first-down"></i>
+                    <i class="fa-solid fa-chevron-up" id="first-up" style="display:none;" onclick="openSubNavBarContents(this)" data-target="subnavbar-first" data-icon-1="first-up" data-icon-2="first-down"></i>
+                </div>
+                <div class="dropdown-content" id="subnavbar-first">
+                    <a href="index.html">About me</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <div class="button-holder">
+                    <button class="dropbtn" onclick="openSubNavBarContents(this)" data-target="subnavbar-second" data-icon-1="second-up" data-icon-2="second-down">Blog</button>
+                    <i class="fa-solid fa-chevron-down" id="second-down" onclick="openSubNavBarContents(this)" data-target="subnavbar-second" data-icon-1="second-up" data-icon-2="second-down"></i>
+                    <i class="fa-solid fa-chevron-up" id="second-up" style="display:none;" onclick="openSubNavBarContents(this)" data-target="subnavbar-second" data-icon-1="second-up" data-icon-2="second-down"></i>
+                </div>
+                <div class="dropdown-content" id="subnavbar-second">
+                    <a href="mainblog.html">Business & Startups</a>
+                    <a href="mainblog.html">Technology</a>
+                    <a href="mainblog.html">Books</a>
+                    <a href="mainblog.html">Life reflections</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <div class="button-holder">
+                    <button class="dropbtn" onclick="openSubNavBarContents(this)" data-target="subnavbar-third" data-icon-1="third-up" data-icon-2="third-down">Playground</button>
+                    <i class="fa-solid fa-chevron-down" id="third-down" onclick="openSubNavBarContents(this)" data-target="subnavbar-third" data-icon-1="third-up" data-icon-2="third-down"></i>
+                    <i class="fa-solid fa-chevron-up" id="third-up" style="display:none;" onclick="openSubNavBarContents(this)" data-target="subnavbar-third" data-icon-1="third-up" data-icon-2="third-down"></i>
+                </div>
+                
+                <div class="dropdown-content" id="subnavbar-third">
+                    <a href="comingsoon.html">My projects</a>
+                    <a href="comingsoon.html">My skills</a>
+                </div>
+            </div>
+            
+        </div>
+        
+    </nav>
+    <!-- end side nav -->
+
     <!-- navbar header -->
     <nav class="navbar">
         <div class="container">
             <div class="logo">
                 <a href="index.html">
-                    <img src="images/yi-hao-high-resolution-logo.png" alt="logo">
+                    <img src="images/yi-hao-whitelogo.png" alt="logo">
                 </a>
             </div>
             <div class="main-menu">
+                <span>"Live out of your imagination, not your history." — <cite>Stephen Covey</cite></span>
                 <ul>
                     <li>
                         <a href="index.html">Home</a>
                     </li>
                     <li>
-                        <a href="index.html?section=about">About Me</a>
-                    </li>
-                    <li>
                         <a href="mainblog.html">Blog</a>
                     </li>
                     <li>
-                        <a href="playground.html">My Playground</a>
+                        <a href="comingsoon.html">Playground</a>
                     </li>
+                    
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- end navbar header -->
 
-    <div class="fullpage">
+    <main class="fullpage">
         <section class="blog-section">
             <div class="container">
-
                 <div class="blog-heading white">
                     <h1 class="text-xxl" >
                         Welcome to my blog page!
@@ -50,64 +100,116 @@
                         Here, you will find stories that I share, be it related to startups, technology, productivity, or just a random reflection of life.
                     </h4>
                 </div>
+                <div class="divider"></div>
+                <div class="highlights">
+                    <h1 class="highlights-header">Highlights</h1>
+                    <div class="highlights-grid">
+                        
+                        <div class="highlights-card card1">
+                            <a href="#Business">
+                                <div class="highlights-content">
+                                    <h1>Business & Startups</h1>
+                                </div>
+                            </a> 
+                            
+                        </div>
+                        <div class="highlights-card card2">
+                            <a href="#Technology">
+                                <div class="highlights-content">
+                                    <h1>Technology</h1>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="highlights-card card3">
+                            <a href="#Books">
+                                <div class="highlights-content">
+                                    <h1>Books</h1>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="highlights-card card4">
+                            <a href="#Lifereflections">
+                                <div class="highlights-content">
+                                    <h1>Life reflections</h1>
+                                </div>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="business" id="Business">
+                    <h1 class="business-header">Business & Startups</h1>
+                    <div class="business-content">
+                        <h2>How Uber Disrupted the Taxi Industry</h2>
+                        <br>
+                        <p>In 2008, two friends in Paris couldn’t find a cab—so they created Uber.</p>
+                        <br>
+                        <p><strong>Why Uber Succeeded:</strong><p>
+                        <br>
+                        <ul>
+                          <li><strong>Problem A:</strong> Taxis were unreliable and expensive → Uber made hailing rides easy via an app.</li>
+                          <br>
+                          <li><strong>Problem B:</strong> Idle cars → Uber gave car owners a way to earn money.</li>
+                          <br>
+                          <li><strong>Problem C:</strong> Taxis owned vehicles → Uber’s light-asset model enabled fast scaling.</li>
+                          <br>
+                        </ul>
+                      
+                        <p><strong>Rapid Scaling & Disruption: </strong><p>
+                        <p>Uber expanded globally within 4 years, often clashing with local laws but adapting fast.</p>
+                        <br>
+                        <p><strong>Beyong Ride-Hailing</strong></p>
+                        <p>Launched UberEats, explored freight, autonomous vehicles, and more.</p>
+                        <br>
+                        <p><strong>Entrepreneurial Takeaways</strong></p>
+                        <ul>
+                          <li>✅ Solve widespread pain points</li>
+                          <li>✅ Scale fast, challenge norms</li>
+                          <li>✅ Think beyond your first idea</li>
+                        </ul>
+                        <br>
+                        <h2>Find out more at my <a href="https://t.me/entrepreneurinsights" target="_blank" rel="noopener noreferrer" class="telegram-link">Telegram Channel</a> !</h2>
+                    </div>                  
+                </div>
+                <div class="divider"></div>
 
-                <div class="blog-grid1 white">
-                    <div class="blog-card">
+                <div class="business" id="Technology">
+                    <h1 class="business-header">Technology</h1>
+                    <div class="business-content">
+                        <h2>To be updated</h2>
+                        <h2>Stay tuned at my upcoming <a href="https://t.me/technoinsights" target="_blank" rel="noopener noreferrer" class="telegram-link">Telegram Channel</a> !</h2>
+                    </div>                  
+                </div>
+                <div class="divider"></div>
+
+                <div class="business" id="Books">
+                    <h1 class="business-header">Books</h1>
+                    <div class="business-content">
                         <h2 style="margin-top: 15px;">
                             Atomic Habits <span style="font-size: small;">by James Clear</span>
                         </h2>
-                        <div class="card-content">
-                            <p>
-                                Maintain consistency, which isn't about striving for peak performance everyday but about avoid bad performance for most of the days. You may ask why most? Just like an election, it does not matter how many actual votes a party gets, but who got the majority of the votes to win the election. Identity is a reflection of habits, and identity influences habits. Be system-focused/identity-focused and not result-focused, so that you will be happy with just running the system, and results are temporary. Results are a side effect of a good system.  4 stages: Cue, Craving, Response, Rewards. Use the environment to your advantage (have a specific setup for each task). Relationship with the context are the cues to be kept, or changed.
-                            </p>
-                        </div>
-    
-                    </div>
+                        <br>
+                        <p>
+                            Maintain consistency, which isn't about striving for peak performance everyday but about avoid bad performance for most of the days. You may ask why most? Just like an election, it does not matter how many actual votes a party gets, but who got the majority of the votes to win the election. Identity is a reflection of habits, and identity influences habits. Be system-focused/identity-focused and not result-focused, so that you will be happy with just running the system, and results are temporary. Results are a side effect of a good system.  4 stages: Cue, Craving, Response, Rewards. Use the environment to your advantage (have a specific setup for each task). Relationship with the context are the cues to be kept, or changed.
+                        </p>
+                       
+                    </div>                  
                 </div>
-                <div class="blog-grid1 white">
-                    <div class="blog-card">
-                        STARTUPS
-                        <p> Coming soon... </p>
-                    </div>
-                    <div class="blog-card">
-                        TECHNOLOGY
-                        <p> Coming soon... </p>
-                    </div>
+                <div class="divider"></div>
+
+                <div class="business" id="Lifereflections">
+                    <h1 class="business-header">Life reflections</h1>
+                    <div class="business-content">
+                        <h2>To be updated</h2>
                 </div>
+        
             </div>
         </section>
-    </div>
+        
+    </main>
 
-    <!-- Contact -->
-    <section class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <h1 class="contact-content">
-                    Reach out to me through these various channels!
-                </h1>
-                <ul class="connections">
-                    <li>
-                        <a href="https://github.com/yyihaoc" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/in/choi-yi-hao-861a36319" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mailto:choiyihao123@gmail.com">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </li>
-                </ul>
-                <a href="docs/Choi Yi Hao_CV.pdf" download>
-                    <i class="fas fa-download"></i> Download My Resume
-                </a>
-            </div>
-        </div>
-    </section>
-   
+    <script src="js/blogscript.js" defer></script>
+    
 </body>
 </html>
